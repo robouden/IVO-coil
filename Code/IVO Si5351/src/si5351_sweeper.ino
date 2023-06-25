@@ -42,12 +42,13 @@
 #include <si5351.h>
 #include "Wire.h"
 
-// Change these two numbers to the pins connected to your encoder.
-//   Best Performance: both pins have interrupt capability
-//   Good Performance: only the first pin has interrupt capability
-//   Low Performance:  neither pin has interrupt capability
-Encoder myEnc(5, 6);
-//   avoid using pins with LEDs attached
+//Rotary encoder info
+//  Change these two numbers to the pins connected to your encoder.
+//    Best Performance: both pins have interrupt capability
+//    Good Performance: only the first pin has interrupt capability
+//    Low Performance:  neither pin has interrupt capability
+Encoder myEnc(23, 25);
+//    avoid using pins with LEDs attached
 
 int correction = 0; // use the Si5351 correction sketch to find the frequency correction factor
 
@@ -81,7 +82,7 @@ void setup()
   }
   */
   si5351.init(SI5351_CRYSTAL_LOAD_8PF, 0, correction);
-  si5351.drive_strength(SI5351_CLK0, SI5351_DRIVE_6MA);
+  si5351.drive_strength(SI5351_CLK0, SI5351_DRIVE_8MA);
   info();
 
   Serial.println("Basic Encoder Test:");
